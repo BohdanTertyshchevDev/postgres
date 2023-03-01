@@ -10,3 +10,8 @@ CREATE TABLE users(
     foot_size smallint,
     height numeric(3, 2)
 );
+
+INSERT INTO users VALUES
+('Petr', 'Petrov', 'mail', 'male', true, '1970-09-15', 40, 2.10),
+('Misha', 'Petrovich', 'mail', 'male', true, '1770-09-15', 20, 2.10),
+('Grisha', 'Petrovskiy', 'mail', 'male', true, '1970-10-15', 50, 2.10);
