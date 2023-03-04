@@ -1,38 +1,34 @@
-DROP TABLE messages;
-
-CREATE TABLE messages(
+ CREATE TABLE produts(
     id serial PRIMARY KEY,
-    body text NOT NULL CHECK (body != ''),
-    author varchar(256) NOT NULL CHECK(author != ''),
-    created_at timestamp DEFAULT current_timestamp,
-    is_read boolean DEFAULT false
-);
+    brand varchar(200) NOT NULL CHECK(brand != ''),
+    model varchar(300) NOT NULL CHECK(model != ''),
+    description text,
+    category varchar(200) NOT NULL CHECK(category != ''),
+    price numeric(10, 2) NOT NULL CHECK(price > 0),
+    discounted_price numeric(10, 2) CHECK(discounted_price <= price)
+ );
 
-INSERT INTO messages VALUES (
-    "Hello world",
-    'Me'
-);
+ INSERT INTO produts(brand, model, category, price) VALUES
+ ('Sumsung', 'S10', 'smartphone', 200),
+ ('Iphone', '5', 'smartphone', 2000),
+ ('Asus', 'F4514', 'PC', 1500);
 
-INSERT INTO messages (author, body) VALUES
-('Me', 'Hello again'),
-('Me', 'Hello again'),
-('Me', 'And again');
-
-INSERT INTO messages VALUES (
-    2, 'Text', 'Author'
-);
+ INSERT INTO produts(brand, model, category, price) VALUES
+ ('Sumsung', 'S10', 'smartphone', 200),
+ ('Iphone', '5', 'smartphone', 2000);
 
 
-CREATE TABLE example(
-    x INT,
-    y INT,
-    PRIMARY KEY(x, y)
-);
 
-INSERT INTO example VALUES
-(1, 1),
-(1, 2),
-(2, 3);
+ALTER TABLE produts
+ADD CONSTRAINT "unique_brand_model_pair" UNIQUE(brand, model);
 
-INSERT INTO example VALUES
-(2, 3);
+
+ALTER TABLE produts
+ADD CONSTRAINT "products_quantity_check" CHECK(quantity >= 0);
+
+ALTER TABLE produts
+DROPE CONSTRAINT "products_quantity_check";
+
+
+ALTER TABLE produts
+ADD COLUMN quantity int;
