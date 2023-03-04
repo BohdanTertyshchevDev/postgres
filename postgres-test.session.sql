@@ -21,3 +21,18 @@ INSERT INTO messages (author, body) VALUES
 INSERT INTO messages VALUES (
     2, 'Text', 'Author'
 );
+
+
+CREATE TABLE example(
+    x INT,
+    y INT,
+    PRIMARY KEY(x, y)
+);
+
+INSERT INTO example VALUES
+(1, 1),
+(1, 2),
+(2, 3);
+
+INSERT INTO example VALUES
+(2, 3);
