@@ -15,3 +15,10 @@ CREATE TABLE orders_to_produts (
    quantity int,
    PRIMARY KEY(order_id, produt_id)
 );
+
+INSERT INTO orders (customer_id) VALUES(1);
+
+INSERT INTO orders_to_produts (order_id, produt_id, quantity) VALUES
+(1, 1, 2),
+(1, 3, 1),
+(1, 2, 1);
