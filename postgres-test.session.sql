@@ -1,34 +1,20 @@
- CREATE TABLE produts(
-    id serial PRIMARY KEY,
-    brand varchar(200) NOT NULL CHECK(brand != ''),
-    model varchar(300) NOT NULL CHECK(model != ''),
-    description text,
-    category varchar(200) NOT NULL CHECK(category != ''),
-    price numeric(10, 2) NOT NULL CHECK(price > 0),
-    discounted_price numeric(10, 2) CHECK(discounted_price <= price)
- );
+CREATE TABLE books(
+   id serial PRIMARY KEY,
+   author varchar(256),
+   name varchar(256),
+   year varchar(4),
+   publisher varchar(256),
+   category varchar(256),
+   synopsys text,
+   quantity int,
+   status varchar(100)
+);
 
- INSERT INTO produts(brand, model, category, price) VALUES
- ('Sumsung', 'S10', 'smartphone', 200),
- ('Iphone', '5', 'smartphone', 2000),
- ('Asus', 'F4514', 'PC', 1500);
+ALTER TABLE books
+ADD CONSTRAINT "quantity_more_zero" CHECK(quantity >= 0);
 
- INSERT INTO produts(brand, model, category, price) VALUES
- ('Sumsung', 'S10', 'smartphone', 200),
- ('Iphone', '5', 'smartphone', 2000);
+ALTER TABLE books
+ADD CONSTRAINT "author_neme" CHECK(author != '' AND name != '');
 
-
-
-ALTER TABLE produts
-ADD CONSTRAINT "unique_brand_model_pair" UNIQUE(brand, model);
-
-
-ALTER TABLE produts
-ADD CONSTRAINT "products_quantity_check" CHECK(quantity >= 0);
-
-ALTER TABLE produts
-DROPE CONSTRAINT "products_quantity_check";
-
-
-ALTER TABLE produts
-ADD COLUMN quantity int;
+ALTER TABLE books
+ADD CONSTRAINT "author_name" UNIQUE(author, name);
