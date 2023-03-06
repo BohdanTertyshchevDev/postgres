@@ -1,0 +1,23 @@
+{
+  "name": "postgres",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BohdanTertyshchevDev/postgres.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BohdanTertyshchevDev/postgres/issues"
+  },
+  "homepage": "https://github.com/BohdanTertyshchevDev/postgres#readme",
+  "dependencies": {
+    "pg": "^8.9.0"
+  }
+}

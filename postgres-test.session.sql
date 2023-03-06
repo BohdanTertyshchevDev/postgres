@@ -31,3 +31,5 @@ INSERT INTO reactions VALUES(
 DROP TABLE reactions;
 
 DELETE FROM contents WHERE id = 1;
+
+
