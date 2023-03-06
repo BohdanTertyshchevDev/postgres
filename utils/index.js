@@ -1,4 +1,17 @@
 module.exports.mapUsers = (userArray) => {
-    return userArray.map((u) => `('${u.firstName}', '${u.lastName}', '${u.email}', ${u.isSubscribe})`)
+    return userArray.map(
+        ({
+            name: {first, last},
+            gender,
+            email,
+            dob: {date}
+        }) =>
+        `('${first}',
+        '${last}',
+        '${email}',
+        ${Boolean(Math.random() > 0.5)},
+        '${date}',
+        '${gender}')`
+    )
     .join(',');
 };

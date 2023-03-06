@@ -1,43 +1,15 @@
-const { Client } = require("pg");
-const { mapUsers } = require('./utils');
+const { getUsers } = require('./api/fetch');
+const { User, client } = require('./model');
 
 
-const configs = {
-    host: "localhost",
-    port: 5432,
-    user: "postgres",
-    password: "postgres",
-    database: "students",
-};
 
-const client = new Client(configs);
-
-const userArray = [{
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'doooooe@gmail.com',
-    isSubscribe: true
-},
-{
-    firstName: 'VAsya',
-    lastName: 'Doevich',
-    email: 'vas@gmail.com',
-    isSubscribe: true
-},
-{
-    firstName: 'Niger',
-    lastName: 'Doesmerh',
-    email: 'nig@gmail.com',
-    isSubscribe: true
-}]
 
 async function start() {
     await client.connect();
 
-    const res = await client.query(
-        `INSERT INTO users (first_name, last_name, email, is_subscribe) VALUES
-        ${mapUsers(userArray)}`
-    );
+    const userArray = await getUsers();
+
+    const res = await User.bulkCreate(userArray);
 
     console.log(res);
 
